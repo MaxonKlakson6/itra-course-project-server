@@ -1,6 +1,7 @@
-const { AuthRepository } = require("../repositories");
-const ApiError = require("../errors/ApiError");
+const jwt = require("jsonwebtoken");
 
+const { AuthRepository, UserRepository } = require("../repositories");
+const ApiError = require("../errors/ApiError");
 const { CREATE_ACCOUNT } = require("../constants/successMessages");
 
 class AuthController {
@@ -17,7 +18,27 @@ class AuthController {
         .json({ error: unexpectedError.message });
     }
   }
-  async signIn(req, res) {}
+  async signIn(req, res) {
+    try {
+      const { body } = req;
+      const user = await UserRepository.findUserByEmail(body.email);
+
+      const credentials = {
+        id: user.dataValues.id,
+        email: user.dataValues.email,
+        role: user.dataValues.role,
+      };
+
+      const jwtToken = jwt.sign(credentials, process.env.JWT_SECRET);
+
+      res.status(200).json(jwtToken);
+    } catch (error) {
+      const unexpectedError = ApiError.internal();
+      res
+        .status(unexpectedError.status)
+        .json({ error: unexpectedError.message });
+    }
+  }
 }
 
 module.exports = new AuthController();
