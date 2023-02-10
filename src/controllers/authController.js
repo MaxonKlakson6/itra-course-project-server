@@ -31,7 +31,12 @@ class AuthController {
 
       const jwtToken = jwt.sign(credentials, process.env.JWT_SECRET);
 
-      res.status(200).json(jwtToken);
+      res.status(200).json({
+        id: user.dataValues.id,
+        email: user.dataValues.email,
+        name: user.dataValues.name,
+        token: jwtToken,
+      });
     } catch (error) {
       const unexpectedError = ApiError.internal();
       res

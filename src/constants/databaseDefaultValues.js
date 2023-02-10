@@ -1,0 +1,6 @@
+const DATABASE_DEFAULT_VALUES = {
+  ROLE: "USER",
+  OPTIONAL_FIELDS: "[]",
+};
+
+module.exports = DATABASE_DEFAULT_VALUES;

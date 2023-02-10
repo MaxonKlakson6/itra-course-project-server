@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
 const sequelize = require("../database/db");
-const ROLES = require("../constants/roles");
+const { ROLE } = require("../constants/databaseDefaultValues");
 
 const UserModel = sequelize.define("User", {
   id: {
@@ -24,7 +24,7 @@ const UserModel = sequelize.define("User", {
   },
   role: {
     type: DataTypes.STRING,
-    defaultValue: ROLES.USER,
+    defaultValue: ROLE,
   },
 });
 

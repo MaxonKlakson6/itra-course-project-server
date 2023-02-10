@@ -1,4 +1,4 @@
-const { UNEXPECTED } = require("../constants/errorMessages");
+const { UNEXPECTED, UNAUTHORIZED } = require("../constants/errorMessages");
 
 class ApiError extends Error {
   constructor(status, message) {
@@ -12,6 +12,9 @@ class ApiError extends Error {
 
   static internal() {
     return new ApiError(500, UNEXPECTED);
+  }
+  static unauthorized() {
+    return new ApiError(401, UNAUTHORIZED);
   }
 }
 
