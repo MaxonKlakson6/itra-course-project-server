@@ -15,6 +15,7 @@ app.use(
     optionSuccessStatus: 200,
   })
 );
+app.options("*", cors());
 app.use(express.json());
 app.use("/", router);
 
