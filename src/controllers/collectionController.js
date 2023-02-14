@@ -2,6 +2,7 @@ const getIdFromToken = require("../helpers/getIdFromToken");
 const { UserRepository, CollectionRepository } = require("../repositories");
 const {
   CHANGE_COLLECTION,
+  CREATE_COLLECTION,
   DELETE_COLLECTION,
 } = require("../constants/successMessages");
 const ApiError = require("../errors/ApiError");
@@ -26,12 +27,12 @@ class CollectionController {
       const id = getIdFromToken(req.headers.authorization);
       const user = await UserRepository.findUserById(id);
 
-      const newCollection = await CollectionRepository.createCollection({
+      await CollectionRepository.createCollection({
         UserId: id,
         ownerName: user.name,
         ...body,
       });
-      res.status(200).json(newCollection);
+      res.status(200).json(CREATE_COLLECTION);
     } catch (error) {
       const unexpectedError = ApiError.internal();
       res
