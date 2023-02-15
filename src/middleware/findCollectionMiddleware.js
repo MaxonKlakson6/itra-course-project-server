@@ -6,7 +6,7 @@ module.exports = async function (req, res, next) {
   try {
     const id = req.params.id;
 
-    if (!id) {
+    if (!id || id === "undefined") {
       ApiError.badRequest(FIND_COLLECTION);
     }
     const collection = await CollectionRepository.getOneCollection(id);
