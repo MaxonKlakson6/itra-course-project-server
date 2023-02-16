@@ -1,4 +1,4 @@
-const { CollectionModel } = require("../models");
+const { CollectionModel, ItemModel } = require("../models");
 
 class CollectionRepository {
   async createCollection(dataToCreate) {
@@ -20,6 +20,9 @@ class CollectionRepository {
       { title, subject, description, optionalFields },
       { where: { id } }
     );
+  }
+  async getAllItems(id) {
+    return ItemModel.findAll({ where: { CollectionId: id } });
   }
 }
 

@@ -6,7 +6,7 @@ const optionalFieldTypes = require("../constants/optionalFieldTypes");
 
 module.exports = function (req, res, next) {
   try {
-    const { optionalFields, image, ownerName, ...fieldsToValidate } = req.body;
+    const { optionalFields, image, ...fieldsToValidate } = req.body;
     collectionSchema.validateSync(fieldsToValidate, { abortEarly: false });
 
     const isValidOptionalFields = optionalFields.every(

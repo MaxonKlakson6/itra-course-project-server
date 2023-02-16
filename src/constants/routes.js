@@ -4,4 +4,5 @@ module.exports = {
   SIGN_UP: "/signUp",
   COLLECTION: "/collection",
   USER: "/user",
+  ITEM: "/item",
 };

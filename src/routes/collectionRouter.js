@@ -31,5 +31,10 @@ collectionRouter.delete(
   findCollectionMiddleware,
   collectionController.deleteCollection
 );
+collectionRouter.get(
+  "/items/:id",
+  findCollectionMiddleware,
+  collectionController.getCollectionItems
+);
 
 module.exports = collectionRouter;

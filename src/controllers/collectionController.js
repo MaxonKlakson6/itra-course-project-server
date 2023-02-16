@@ -68,6 +68,13 @@ class CollectionController {
         .json({ error: unexpectedError.message });
     }
   }
+  async getCollectionItems(req, res) {
+    const id = req.params.id;
+
+    const items = await CollectionRepository.getAllItems(id);
+
+    res.status(200).json(items);
+  }
 }
 
 module.exports = new CollectionController();
