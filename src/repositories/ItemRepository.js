@@ -1,4 +1,5 @@
 const { ItemModel } = require("../models");
+const Sequelize = require("sequelize");
 
 class ItemRepository {
   async createItem(itemData) {
@@ -13,6 +14,11 @@ class ItemRepository {
   }
   async getItem(id) {
     return ItemModel.findOne({ where: { id } });
+  }
+  async getTags() {
+    return ItemModel.findAll({
+      attributes: [Sequelize.fn("DISTINCT", Sequelize.col("tags")), "tags"],
+    });
   }
 }
 

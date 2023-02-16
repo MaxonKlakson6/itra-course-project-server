@@ -64,6 +64,25 @@ class ItemController {
         .json({ error: unexpectedError.message });
     }
   }
+  async getTags(req, res) {
+    try {
+      const arrayOfTags = await ItemRepository.getTags();
+
+      const coupledTags = arrayOfTags.reduce((tags, item) => {
+        tags.push(...item.dataValues.tags);
+        return tags;
+      }, []);
+
+      const setTags = new Set(coupledTags);
+
+      res.status(200).json(Array.from(setTags));
+    } catch (error) {
+      const unexpectedError = ApiError.internal();
+      res
+        .status(unexpectedError.status)
+        .json({ error: unexpectedError.message });
+    }
+  }
 }
 
 module.exports = new ItemController();

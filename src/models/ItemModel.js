@@ -20,12 +20,25 @@ const ItemModel = sequelize.define("Item", {
   optionalFields: {
     type: DataTypes.STRING,
     defaultValue: OPTIONAL_FIELDS,
-    allowNull: true,
     get: function () {
       return JSON.parse(this.getDataValue("optionalFields"));
     },
     set: function (value) {
       return this.setDataValue("optionalFields", JSON.stringify(value));
+    },
+  },
+  likes: {
+    type: DataTypes.ARRAY(DataTypes.INTEGER),
+    defaultValue: [],
+  },
+  comments: {
+    type: DataTypes.STRING,
+    defaultValue: OPTIONAL_FIELDS,
+    get: function () {
+      return JSON.parse(this.getDataValue("comments"));
+    },
+    set: function (value) {
+      return this.setDataValue("comments", JSON.stringify(value));
     },
   },
 });

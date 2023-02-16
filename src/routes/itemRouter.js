@@ -28,6 +28,8 @@ itemRouter.delete(
   itemController.deleteItem
 );
 
+itemRouter.get("/tags", itemController.getTags);
+
 itemRouter.get("/:id", findItemMiddleware, itemController.getItem);
 
 module.exports = itemRouter;
