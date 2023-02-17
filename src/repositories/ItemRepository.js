@@ -12,6 +12,9 @@ class ItemRepository {
   async deleteItem(id) {
     await ItemModel.destroy({ where: { id } });
   }
+  async deleteItemsInCollection(CollectionId) {
+    await ItemModel.destroy({ where: { CollectionId } });
+  }
   async getItem(id) {
     return ItemModel.findOne({ where: { id } });
   }
@@ -19,6 +22,12 @@ class ItemRepository {
     return ItemModel.findAll({
       attributes: [Sequelize.fn("DISTINCT", Sequelize.col("tags")), "tags"],
     });
+  }
+  async addComment(comments, id) {
+    await ItemModel.update({ comments }, { where: { id } });
+  }
+  async updateLikes(likes, id) {
+    await ItemModel.update({ likes }, { where: { id } });
   }
 }
 

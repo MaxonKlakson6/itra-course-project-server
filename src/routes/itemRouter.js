@@ -4,6 +4,7 @@ const itemController = require("../controllers/itemController");
 const verifyJwtMiddleware = require("../middleware/verifyJwtMiddleware");
 const validateItemMiddleware = require("../middleware/validateItemMiddleware");
 const findItemMiddleware = require("../middleware/findItemMiddleware");
+const { ItemRepository } = require("../repositories");
 
 const itemRouter = new Router();
 
@@ -20,16 +21,13 @@ itemRouter.patch(
   validateItemMiddleware,
   itemController.changeItem
 );
-
 itemRouter.delete(
   "/:id",
   verifyJwtMiddleware,
   findItemMiddleware,
   itemController.deleteItem
 );
-
 itemRouter.get("/tags", itemController.getTags);
-
 itemRouter.get("/:id", findItemMiddleware, itemController.getItem);
 
 module.exports = itemRouter;

@@ -1,5 +1,9 @@
 const getIdFromToken = require("../helpers/getIdFromToken");
-const { UserRepository, CollectionRepository } = require("../repositories");
+const {
+  UserRepository,
+  CollectionRepository,
+  ItemRepository,
+} = require("../repositories");
 const {
   CHANGE_COLLECTION,
   CREATE_COLLECTION,
@@ -59,7 +63,7 @@ class CollectionController {
     try {
       const id = req.params.id;
       await CollectionRepository.deleteCollection(id);
-
+      await ItemRepository.deleteItemsInCollection(id);
       res.status(200).json(DELETE_COLLECTION);
     } catch (error) {
       const unexpectedError = ApiError.internal();
