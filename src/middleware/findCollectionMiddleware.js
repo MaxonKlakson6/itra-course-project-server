@@ -2,9 +2,9 @@ const checkCollection = require("../helpers/checkCollection");
 
 module.exports = async function (req, res, next) {
   try {
-    const id = req.params.id;
+    const collectionId = req.params.id;
 
-    await checkCollection(id);
+    await checkCollection(collectionId);
 
     next();
   } catch (error) {

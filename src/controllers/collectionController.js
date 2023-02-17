@@ -14,8 +14,10 @@ const ApiError = require("../errors/ApiError");
 class CollectionController {
   async getCollection(req, res) {
     try {
-      const id = req.params.id;
-      const collection = await CollectionRepository.getOneCollection(id);
+      const collectionId = req.params.id;
+      const collection = await CollectionRepository.getOneCollection(
+        collectionId
+      );
 
       res.status(200).json(collection);
     } catch (error) {
@@ -46,10 +48,13 @@ class CollectionController {
   }
   async changeCollection(req, res) {
     try {
-      const id = req.params.id;
+      const collectionId = req.params.id;
       const { body } = req;
 
-      await CollectionRepository.changeCollection({ id, ...body });
+      await CollectionRepository.changeCollection({
+        id: collectionId,
+        ...body,
+      });
 
       res.status(200).json(CHANGE_COLLECTION);
     } catch (error) {
@@ -61,9 +66,9 @@ class CollectionController {
   }
   async deleteCollection(req, res) {
     try {
-      const id = req.params.id;
-      await CollectionRepository.deleteCollection(id);
-      await ItemRepository.deleteItemsInCollection(id);
+      const collectionId = req.params.id;
+      await ItemRepository.deleteItemsInCollection(collectionId);
+      await CollectionRepository.deleteCollection(collectionId);
       res.status(200).json(DELETE_COLLECTION);
     } catch (error) {
       const unexpectedError = ApiError.internal();

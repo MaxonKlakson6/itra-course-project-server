@@ -43,4 +43,9 @@ const ItemModel = sequelize.define("Item", {
   },
 });
 
+ItemModel.getSearchOptions = () => ({
+  type: "items",
+  keys: ["title", "tags"],
+});
+
 module.exports = ItemModel;

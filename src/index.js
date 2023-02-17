@@ -8,6 +8,7 @@ const sequelize = require("./database/db");
 const router = require("./routes/index");
 const models = require("./models");
 const likesAndCommentsHandler = require("./sockets/likesAndCommentsHandler");
+const loadAllItems = require("./search/loadAllItems");
 
 const app = express();
 
@@ -31,6 +32,7 @@ const startApplication = async () => {
     const PORT = process.env.PORT || 4000;
     await sequelize.authenticate();
     await sequelize.sync();
+    await loadAllItems();
     app.listen(PORT, () => {
       console.log(`server running on port ${PORT}`);
     });

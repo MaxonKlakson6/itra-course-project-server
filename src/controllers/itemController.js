@@ -20,6 +20,7 @@ class ItemController {
       await ItemRepository.createItem(newItem);
       res.status(200).json(CREATE_ITEM);
     } catch (error) {
+      console.log(error);
       const unexpectedError = ApiError.internal();
       res
         .status(unexpectedError.status)
@@ -34,6 +35,7 @@ class ItemController {
       await ItemRepository.changeItem({ id, ...body });
       res.status(200).json(CHANGE_ITEM);
     } catch (error) {
+      console.log(error);
       const unexpectedError = ApiError.internal();
       res
         .status(unexpectedError.status)
