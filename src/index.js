@@ -31,7 +31,7 @@ const startApplication = async () => {
   try {
     const PORT = process.env.PORT || 4000;
     await sequelize.authenticate();
-    await sequelize.sync();
+    await sequelize.sync({ force: true });
     await loadAllItems();
     app.listen(PORT, () => {
       console.log(`server running on port ${PORT}`);

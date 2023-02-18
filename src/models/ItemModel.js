@@ -32,7 +32,7 @@ const ItemModel = sequelize.define("Item", {
     defaultValue: [],
   },
   comments: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     defaultValue: OPTIONAL_FIELDS,
     get: function () {
       return JSON.parse(this.getDataValue("comments"));

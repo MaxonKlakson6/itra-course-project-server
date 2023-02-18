@@ -30,7 +30,7 @@ const CollectionModel = sequelize.define("Collection", {
     allowNull: false,
   },
   optionalFields: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     defaultValue: OPTIONAL_FIELDS,
     allowNull: true,
     get: function () {
