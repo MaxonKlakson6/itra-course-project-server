@@ -16,7 +16,7 @@ module.exports = async function (req, res, next) {
       if (type === "string" || type === "date") {
         return typeof value === "string" && value;
       } else {
-        return typeof value === type;
+        return true;
       }
     });
 
