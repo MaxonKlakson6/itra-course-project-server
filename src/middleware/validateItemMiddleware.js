@@ -13,7 +13,7 @@ module.exports = async function (req, res, next) {
     itemSchema.validateSync(fieldsToValidate, { abortEarly: false });
 
     const isValidOptionalFields = optionalFields.every(({ value, type }) => {
-      if (type === "string" || type === "date") {
+      if (type === "string" || type === "date" || type === "text") {
         return typeof value === "string" && value;
       } else {
         return true;
