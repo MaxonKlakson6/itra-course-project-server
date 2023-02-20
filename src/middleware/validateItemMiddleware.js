@@ -12,18 +12,6 @@ module.exports = async function (req, res, next) {
 
     itemSchema.validateSync(fieldsToValidate, { abortEarly: false });
 
-    const isValidOptionalFields = optionalFields.every(({ value, type }) => {
-      if (type === "string" || type === "date" || type === "text") {
-        return typeof value === "string" && value;
-      } else {
-        return true;
-      }
-    });
-
-    if (!isValidOptionalFields) {
-      ApiError.badRequest(CREATE_ITEM);
-    }
-
     next();
   } catch (error) {
     ErrorSender.errorWithValidation(res, error);
