@@ -2,23 +2,16 @@ const { Router } = require("express");
 
 const itemController = require("../controllers/itemController");
 const verifyJwtMiddleware = require("../middleware/verifyJwtMiddleware");
-const validateItemMiddleware = require("../middleware/validateItemMiddleware");
 const findItemMiddleware = require("../middleware/findItemMiddleware");
 const searchItems = require("../search");
 
 const itemRouter = new Router();
 
-itemRouter.post(
-  "/",
-  verifyJwtMiddleware,
-  validateItemMiddleware,
-  itemController.createItem
-);
+itemRouter.post("/", verifyJwtMiddleware, itemController.createItem);
 itemRouter.patch(
   "/:id",
   verifyJwtMiddleware,
   findItemMiddleware,
-  validateItemMiddleware,
   itemController.changeItem
 );
 itemRouter.delete(
