@@ -10,7 +10,11 @@ const updateItem = (item) => {
 };
 
 const deleteOne = (item) => {
-  searchItems.remove(item);
+  const itemToDelete = {
+    ...item,
+    optionalFields: JSON.parse(item.optionalFields),
+  };
+  searchItems.remove(itemToDelete);
 };
 
 const deleteAll = (items) => {

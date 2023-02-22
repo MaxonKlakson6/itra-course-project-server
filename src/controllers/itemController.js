@@ -44,6 +44,7 @@ class ItemController {
   async deleteItem(req, res) {
     try {
       const id = req.params.id;
+      console.log(id);
       await ItemRepository.deleteItem(id);
       res.status(200).json(DELETE_ITEM);
     } catch (error) {
