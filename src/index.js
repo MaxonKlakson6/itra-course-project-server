@@ -33,9 +33,10 @@ const startApplication = async () => {
     await sequelize.authenticate();
     await sequelize.sync();
     await loadAllItems();
-    app.listen(PORT, () => {
+    const httpServer = app.listen(PORT, () => {
       console.log(`server running on port ${PORT}`);
     });
+    webSocketServer.listen(httpServer);
   } catch (error) {
     console.log(error);
   }
