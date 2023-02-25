@@ -85,6 +85,18 @@ class ItemController {
         .json({ error: unexpectedError.message });
     }
   }
+  async getRecent(req, res) {
+    try {
+      const items = await ItemRepository.getRecent();
+      res.status(200).json(items);
+    } catch (error) {
+      console.log(error);
+      const unexpectedError = ApiError.internal();
+      res
+        .status(unexpectedError.status)
+        .json({ error: unexpectedError.message });
+    }
+  }
 }
 
 module.exports = new ItemController();

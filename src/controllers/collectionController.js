@@ -84,6 +84,17 @@ class CollectionController {
 
     res.status(200).json(items);
   }
+  async getBiggestCollections(req, res) {
+    try {
+      const items = await CollectionRepository.getBiggestCollections();
+      res.status(200).json(items);
+    } catch (error) {
+      const unexpectedError = ApiError.internal();
+      res
+        .status(unexpectedError.status)
+        .json({ error: unexpectedError.message });
+    }
+  }
 }
 
 module.exports = new CollectionController();

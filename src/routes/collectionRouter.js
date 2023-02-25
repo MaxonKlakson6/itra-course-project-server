@@ -36,5 +36,6 @@ collectionRouter.get(
   findCollectionMiddleware,
   collectionController.getCollectionItems
 );
+collectionRouter.get("/", collectionController.getBiggestCollections);
 
 module.exports = collectionRouter;

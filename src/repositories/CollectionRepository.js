@@ -1,4 +1,5 @@
 const { CollectionModel, ItemModel } = require("../models");
+const { Sequelize } = require("sequelize");
 
 class CollectionRepository {
   async createCollection(dataToCreate) {
@@ -23,6 +24,25 @@ class CollectionRepository {
   }
   async getAllItems(id) {
     return ItemModel.findAll({ where: { CollectionId: id } });
+  }
+  async getBiggestCollections() {
+    return CollectionModel.findAll({
+      attributes: {
+        include: [
+          [Sequelize.fn("COUNT", Sequelize.col("Items.CollectionId")), "count"],
+        ],
+      },
+      include: [
+        {
+          model: ItemModel,
+          attributes: [],
+        },
+      ],
+      group: ["Collection.id"],
+      order: [["count", "DESC"]],
+      subQuery: false,
+      limit: 3,
+    });
   }
 }
 

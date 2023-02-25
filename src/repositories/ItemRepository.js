@@ -46,6 +46,12 @@ class ItemRepository {
   async getAll() {
     return ItemModel.findAll();
   }
+  async getRecent() {
+    return ItemModel.findAll({
+      order: [["createdAt", "DESC"]],
+      limit: 6,
+    });
+  }
 }
 
 module.exports = new ItemRepository();

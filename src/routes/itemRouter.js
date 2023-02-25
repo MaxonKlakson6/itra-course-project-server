@@ -7,6 +7,7 @@ const searchItems = require("../search");
 
 const itemRouter = new Router();
 
+itemRouter.get("/recent", itemController.getRecent);
 itemRouter.post("/", verifyJwtMiddleware, itemController.createItem);
 itemRouter.patch(
   "/:id",
