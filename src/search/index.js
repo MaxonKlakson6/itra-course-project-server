@@ -2,7 +2,7 @@ const MiniSearch = require("minisearch");
 
 const itemsSearch = new MiniSearch({
   fields: ["title", "tags", "optionalFields"],
-  storeFields: ["title", "tags", "optionalFields", "id"],
+  storeFields: ["title", "tags", "optionalFields", "id", "CollectionId"],
   searchOptions: {
     fuzzy: 1,
   },

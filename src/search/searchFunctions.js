@@ -1,7 +1,6 @@
 const searchItems = require("./index");
 
 const addItem = (item) => {
-  console.log(item.optionalFields);
   searchItems.add(item);
 };
 
