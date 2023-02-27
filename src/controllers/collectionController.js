@@ -1,4 +1,4 @@
-const getIdFromToken = require("../helpers/getIdFromToken");
+const getTokenData = require("../helpers/getTokenData");
 const {
   UserRepository,
   CollectionRepository,
@@ -30,7 +30,7 @@ class CollectionController {
   async createCollection(req, res) {
     try {
       const { body } = req;
-      const id = getIdFromToken(req.headers.authorization);
+      const { id } = getTokenData(req.headers.authorization);
       const user = await UserRepository.findUserById(id);
 
       await CollectionRepository.createCollection({

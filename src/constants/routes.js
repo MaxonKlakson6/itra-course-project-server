@@ -5,4 +5,5 @@ module.exports = {
   COLLECTION: "/collection",
   USER: "/user",
   ITEM: "/item",
+  ADMIN: "/admin",
 };

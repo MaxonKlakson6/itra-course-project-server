@@ -10,4 +10,6 @@ module.exports = {
   CREATE_COLLECTION: "Incorrect optional fields value",
   CREATE_ITEM: "Incorrect optional fields values",
   FIND_ITEM: "Cannot find item",
+  NOT_ADMIN: "No administrator privileges",
+  FIND_USER: "Cannot find user",
 };

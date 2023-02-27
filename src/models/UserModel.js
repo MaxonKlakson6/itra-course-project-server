@@ -9,6 +9,10 @@ const UserModel = sequelize.define("User", {
     autoIncrement: true,
     primaryKey: true,
   },
+  isBlocked: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false,

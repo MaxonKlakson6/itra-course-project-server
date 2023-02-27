@@ -6,4 +6,7 @@ module.exports = {
   CREATE_ITEM: "Item was created",
   CHANGE_ITEM: "Item was changed",
   DELETE_ITEM: "Item was deleted",
+  DELETE_USER: "User was deleted",
+  MAKE_ADMIN: "User role was changed",
+  BLOCK_STATUS: "Users block status was changed",
 };
