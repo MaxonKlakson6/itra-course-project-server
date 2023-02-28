@@ -15,10 +15,11 @@ class CollectionRepository {
     await CollectionModel.destroy({ where: { id } });
   }
   async changeCollection(changeData) {
-    const { title, subject, description, optionalFields, id } = changeData;
+    const { title, subject, description, optionalFields, id, image } =
+      changeData;
 
     await CollectionModel.update(
-      { title, subject, description, optionalFields },
+      { title, subject, description, optionalFields, image },
       { where: { id } }
     );
   }
