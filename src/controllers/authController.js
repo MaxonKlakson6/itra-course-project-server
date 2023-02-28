@@ -35,6 +35,7 @@ class AuthController {
         id: user.dataValues.id,
         email: user.dataValues.email,
         name: user.dataValues.name,
+        role: user.dataValues.role,
         token: jwtToken,
       });
     } catch (error) {

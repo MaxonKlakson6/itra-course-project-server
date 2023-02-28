@@ -30,13 +30,13 @@ class CollectionController {
   async createCollection(req, res) {
     try {
       const { body } = req;
-      const { id } = getTokenData(req.headers.authorization);
-      const user = await UserRepository.findUserById(id);
+      const { userId, ...otherFields } = body;
+      const user = await UserRepository.findUserById(userId);
 
       await CollectionRepository.createCollection({
-        UserId: id,
+        UserId: userId,
         ownerName: user.name,
-        ...body,
+        ...otherFields,
       });
       res.status(200).json(CREATE_COLLECTION);
     } catch (error) {
