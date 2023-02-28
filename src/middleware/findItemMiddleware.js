@@ -6,7 +6,7 @@ module.exports = async function (req, res, next) {
   try {
     const id = req.params.id;
 
-    if (!id || id === "undefined") {
+    if (isNaN(Number(id))) {
       ApiError.badRequest(FIND_ITEM);
     }
     const item = await ItemRepository.getItem(id);

@@ -6,7 +6,7 @@ class UserMiddleware {
   getAllUserCollections(req, res, next) {
     try {
       const id = req.params.id;
-      if (!id || id === "undefined") {
+      if (isNaN(Number(id))) {
         ApiError.badRequest(GET_COLLECTIONS);
       }
       const user = UserRepository.findUserById(id);
