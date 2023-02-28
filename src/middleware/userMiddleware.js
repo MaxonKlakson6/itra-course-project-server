@@ -17,7 +17,7 @@ class UserMiddleware {
 
       next();
     } catch (error) {
-      res.status(error.status).json(error.message);
+      res.status(error.status).json({ error: error.message });
     }
   }
 }
