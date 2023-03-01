@@ -14,7 +14,7 @@ class ApiError extends Error {
     return new ApiError(500, UNEXPECTED);
   }
   static unauthorized() {
-    return new ApiError(401, UNAUTHORIZED);
+    throw new ApiError(401, UNAUTHORIZED);
   }
   static forbidden(message) {
     throw new ApiError(403, message);
