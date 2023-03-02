@@ -1,7 +1,6 @@
 const { UserRepository } = require("../repositories");
 const ApiError = require("../errors/ApiError");
 const getIdFromToken = require("../helpers/getTokenData");
-const { BLOCKED } = require("../constants/errorMessages");
 
 module.exports = async function (req, res, next) {
   try {
@@ -10,7 +9,7 @@ module.exports = async function (req, res, next) {
 
     if (!user) ApiError.unauthorized();
 
-    if (user.isBlocked) ApiError.forbidden(BLOCKED);
+    if (user.isBlocked) ApiError.unauthorized();
     next();
   } catch (error) {
     res.status(error.status).json(error.message);
