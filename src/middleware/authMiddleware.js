@@ -37,6 +37,10 @@ class AuthMiddleware {
         ApiError.badRequest(NOT_FOUND);
       }
 
+      if (user.isBlocked) {
+        ApiError.forbidden("Account was blocked");
+      }
+
       const comparePassword = bcrypt.compareSync(
         body.password,
         user.dataValues.password
