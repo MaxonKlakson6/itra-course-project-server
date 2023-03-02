@@ -9,6 +9,7 @@ const {
   USER_CREATED,
   NOT_FOUND,
   WRONG_PASSWORD,
+  BLOCKED,
 } = require("../constants/errorMessages");
 
 class AuthMiddleware {
@@ -38,7 +39,7 @@ class AuthMiddleware {
       }
 
       if (user.isBlocked) {
-        ApiError.forbidden("Account was blocked");
+        ApiError.forbidden(BLOCKED);
       }
 
       const comparePassword = bcrypt.compareSync(
